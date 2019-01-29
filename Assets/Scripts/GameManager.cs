@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject Water;
     public GameObject ChooseUI;
     public GameObject Buttons;
+    string BadGuyName;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -46,6 +47,8 @@ public class GameManager : MonoBehaviour
         StatusArray.Add("SeaLevelUpkeep", 40);
         BadGuyIndex = Random.Range(0, 4);
         AllCharacters[BadGuyIndex].isBad = true;
+        BadGuyName = AllCharacters[BadGuyIndex].name;
+
     }
     private void Update()
     {
@@ -133,7 +136,9 @@ public class GameManager : MonoBehaviour
             DeathCheck();
         }
         while (AllCharacters[CurrentCharacterIndex].isDead)
+        {
             CurrentCharacterIndex++;
+        }
         AllCharacters[CurrentCharacterIndex].Show();
     }
 
@@ -174,6 +179,6 @@ public class GameManager : MonoBehaviour
     }
     public string GetBadGuyName()
     {
-        return AllCharacters[BadGuyIndex].name;
+        return BadGuyName;
     }
 }
