@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, int> StatusArray;
     public Text[] StatusUI;
     public GameObject Water;
+    public GameObject ChooseUI;
+    public GameObject Buttons;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -39,9 +41,9 @@ public class GameManager : MonoBehaviour
         StatusArray.Add("Food", 100);
         StatusArray.Add("BoatStatus", 100);
         StatusArray.Add("SeaLevel", 100);
-        StatusArray.Add("FoodUpkeep", 20);
-        StatusArray.Add("BoatStatusUpkeep", 20);
-        StatusArray.Add("SeaLevelUpKeep", 20);
+        StatusArray.Add("FoodUpkeep", 40);
+        StatusArray.Add("BoatStatusUpkeep", 40);
+        StatusArray.Add("SeaLevelUpkeep", 40);
         BadGuyIndex = Random.Range(0, 4);
         AllCharacters[BadGuyIndex].isBad = true;
     }
@@ -83,6 +85,7 @@ public class GameManager : MonoBehaviour
 
     public void DayEnd()
     {
+        Debug.Log("DayEnd");
         foreach (var c in AllCharacters)
         {
             int tmpHelp = 5;
@@ -107,10 +110,13 @@ public class GameManager : MonoBehaviour
         StatusUI[0].text = "Food: " + StatusArray["Food"].ToString() + " / " + StatusArray["FoodUpkeep"];
         StatusUI[1].text = "SeaLevel: " + StatusArray["SeaLevel"].ToString() + " / " + StatusArray["SeaLevelUpkeep"];
         StatusUI[2].text = "BoatStatus: " + StatusArray["BoatStatus"].ToString() + " / " + StatusArray["BoatStatusUpkeep"];
-        Water.transform.localScale.Set(Water.transform.localScale.x, StatusArray["SeaLevel"] / 100.0f, Water.transform.localScale.z);
+        //Water.transform.localScale.Set(Water.transform.localScale.x, StatusArray["SeaLevel"] / 100.0f, Water.transform.localScale.z);
+        //Water.transform.Translate()
         CurrentCharacterIndex = 0;
         while (AllCharacters[CurrentCharacterIndex].isDead)
             NextCharacter();
+        ChooseUI.SetActive(true);
+        Buttons.SetActive(false);
     }
 
     void NextCharacter()
@@ -120,18 +126,15 @@ public class GameManager : MonoBehaviour
             AllCharacters[i].Hide();
         }
         CurrentCharacterIndex++;
-        if (CurrentCharacterIndex == AllCharacters.Length)
-            CurrentCharacterIndex = 0;
-        while (AllCharacters[CurrentCharacterIndex].isDead)
-            CurrentCharacterIndex++;
         if (CurrentCharacterIndex >= AllCharacters.Length)
         {
             DayEnd();
-            KillOneCharacter(0);
+            //KillOneCharacter(0);
             DeathCheck();
         }
-        else
-            AllCharacters[CurrentCharacterIndex].Show();
+        while (AllCharacters[CurrentCharacterIndex].isDead)
+            CurrentCharacterIndex++;
+        AllCharacters[CurrentCharacterIndex].Show();
     }
 
     void DeathCheck()
@@ -154,7 +157,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void KillOneCharacter(int ChaIndex)
+    public void KillOneCharacter(int ChaIndex)
     {
         if(ChaIndex == BadGuyIndex)
         {
@@ -164,7 +167,13 @@ public class GameManager : MonoBehaviour
         {
             AllCharacters[ChaIndex].isDead = true;
             AllCharacters[ChaIndex].JobText.text = "Dead";
-            
         }
+        ChooseUI.SetActive(false);
+        Buttons.SetActive(true);
+        CurrentCharacterIndex = 0;
+    }
+    public string GetBadGuyName()
+    {
+        return AllCharacters[BadGuyIndex].name;
     }
 }
