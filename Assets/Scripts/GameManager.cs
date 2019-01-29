@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StatusArray = new Dictionary<string, int>();
         StatusArray.Add("Food", 100);
         StatusArray.Add("BoatStatus", 100);
         StatusArray.Add("SeaLevel", 100);
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
         {
             AllCharacters[CurrentCharacterIndex].TodayJob = 1;
             AllCharacters[CurrentCharacterIndex].JobText.text = "Fix";
+            NextCharacter();
         }
     }
     public void OnFishClicked()
@@ -63,7 +66,8 @@ public class GameManager : MonoBehaviour
         {
             AllCharacters[CurrentCharacterIndex].TodayJob = 2;
             AllCharacters[CurrentCharacterIndex].JobText.text = "Fish";
-
+            NextCharacter();
+            
         }
     }
     public void OnPrayClicked()
@@ -72,6 +76,8 @@ public class GameManager : MonoBehaviour
         {
             AllCharacters[CurrentCharacterIndex].TodayJob = 3;
             AllCharacters[CurrentCharacterIndex].JobText.text = "Pray";
+            NextCharacter();
+            
         }
     }
 
@@ -102,6 +108,9 @@ public class GameManager : MonoBehaviour
         StatusUI[1].text = "SeaLevel: " + StatusArray["SeaLevel"].ToString() + " / " + StatusArray["SeaLevelUpkeep"];
         StatusUI[2].text = "BoatStatus: " + StatusArray["BoatStatus"].ToString() + " / " + StatusArray["BoatStatusUpkeep"];
         Water.transform.localScale.Set(Water.transform.localScale.x, StatusArray["SeaLevel"] / 100.0f, Water.transform.localScale.z);
+        CurrentCharacterIndex = 0;
+        while (AllCharacters[CurrentCharacterIndex].isDead)
+            NextCharacter();
     }
 
     void NextCharacter()
@@ -111,6 +120,51 @@ public class GameManager : MonoBehaviour
             AllCharacters[i].Hide();
         }
         CurrentCharacterIndex++;
-        AllCharacters[CurrentCharacterIndex].Show();
+        if (CurrentCharacterIndex == AllCharacters.Length)
+            CurrentCharacterIndex = 0;
+        while (AllCharacters[CurrentCharacterIndex].isDead)
+            CurrentCharacterIndex++;
+        if (CurrentCharacterIndex >= AllCharacters.Length)
+        {
+            DayEnd();
+            KillOneCharacter(0);
+            DeathCheck();
+        }
+        else
+            AllCharacters[CurrentCharacterIndex].Show();
+    }
+
+    void DeathCheck()
+    {
+        if (StatusArray["Food"] <= 0 || StatusArray["SeaLevel"] <= 0 || StatusArray["BoatStatus"] <= 0)
+            SceneManager.LoadScene("FailScene");
+        else
+        {
+            bool success = false;
+            for (int i = 0; i < AllCharacters.Length; ++ i)
+            {
+                if (!AllCharacters[i].isDead && !AllCharacters[i].isBad)
+                {
+                    success = true;
+                    break;
+                }
+            }
+            if(!success)
+                SceneManager.LoadScene("FailScene");
+        }
+    }
+
+    void KillOneCharacter(int ChaIndex)
+    {
+        if(ChaIndex == BadGuyIndex)
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+        else
+        {
+            AllCharacters[ChaIndex].isDead = true;
+            AllCharacters[ChaIndex].JobText.text = "Dead";
+            
+        }
     }
 }

@@ -597,7 +597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 378, y: 237}
+  m_AnchoredPosition: {x: 305.99997, y: 237}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416094769
@@ -1523,7 +1523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840525639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 190470111}
@@ -1536,7 +1536,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840525639}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1592,6 +1592,7 @@ MonoBehaviour:
   TodayJob: 0
   JobText: {fileID: 435831275}
   isBad: 0
+  isDead: 0
   RotateAngle: 30
   parentObj: {fileID: 190470111}
 --- !u!1 &887114468
@@ -1927,7 +1928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 298, y: 237}
+  m_AnchoredPosition: {x: 226, y: 237}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1180248891
@@ -2253,7 +2254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266126186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 190470111}
@@ -2266,7 +2267,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266126186}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2322,6 +2323,7 @@ MonoBehaviour:
   TodayJob: 0
   JobText: {fileID: 1567471794}
   isBad: 0
+  isDead: 0
   RotateAngle: 30
   parentObj: {fileID: 190470111}
 --- !u!1 &1322656669
@@ -2359,7 +2361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 221, y: 237}
+  m_AnchoredPosition: {x: 390, y: 237}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322656671
@@ -2538,7 +2540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609705002}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 190470111}
@@ -2551,7 +2553,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609705002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2607,6 +2609,7 @@ MonoBehaviour:
   TodayJob: 0
   JobText: {fileID: 801683120}
   isBad: 0
+  isDead: 0
   RotateAngle: 30
   parentObj: {fileID: 190470111}
 --- !u!1 &1635879524
@@ -2635,7 +2638,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635879524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 190470111}
@@ -2648,7 +2651,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635879524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2704,6 +2707,7 @@ MonoBehaviour:
   TodayJob: 0
   JobText: {fileID: 2144849318}
   isBad: 0
+  isDead: 0
   RotateAngle: 30
   parentObj: {fileID: 190470111}
 --- !u!1 &1703588171
@@ -2867,6 +2871,7 @@ MonoBehaviour:
   TodayJob: 0
   JobText: {fileID: 488334569}
   isBad: 0
+  isDead: 0
   RotateAngle: 0
   parentObj: {fileID: 190470111}
 --- !u!1 &1775952777
@@ -3195,7 +3200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b889dfff7abb68d40b05011a9c42aceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentCharacter: {fileID: 1735056132}
+  CurrentCharacterIndex: 0
   AllCharacters:
   - {fileID: 1735056132}
   - {fileID: 840525642}

@@ -9,6 +9,7 @@ public class CharacterScript : MonoBehaviour
     public int TodayJob = 0;
     public Text JobText;
     public bool isBad = false;
+    public bool isDead = false;
     [SerializeField]
     float RotateAngle = 30.0f;
     // Start is called before the first frame update
